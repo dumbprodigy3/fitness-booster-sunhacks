@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitBoost Dashboard</title>
-    <!-- Link to the external CSS file -->
+        <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <!-- Google Fonts for consistent typography -->
+        <!-- Google Fonts for consistent typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -21,34 +22,17 @@
         </nav>
     </header>
 
-    <section class="dashboard-container">
-        <div class="card">
-            <h3>Workout Tracking</h3>
-            <input type="text" id="workout-input" placeholder="Enter today's workout" />
-            <button onclick="updateWorkout()">Update</button>
-            <p id="workout-status">No workout logged yet.</p>
-        </div>
+    <div class="toggle-container">
+        <label class="toggle-label">View: </label>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span id="viewMode">Day</span>
+    </div>
 
-        <div class="card">
-            <h3>Step Count</h3>
-            <input type="number" id="steps-input" placeholder="Enter today's steps" />
-            <button onclick="updateSteps()">Update</button>
-            <p id="steps-status">No steps logged yet.</p>
-        </div>
-
-        <div class="card">
-            <h3>Food Tracking</h3>
-            <input type="text" id="food-input" placeholder="Enter today's meals" />
-            <button onclick="updateFood()">Update</button>
-            <p id="food-status">No meals logged yet.</p>
-        </div>
-
-        <div class="card">
-            <h3>Sleep Cycle</h3>
-            <input type="number" id="sleep-input" placeholder="Enter hours of sleep" />
-            <button onclick="updateSleep()">Update</button>
-            <p id="sleep-status">No sleep logged yet.</p>
-        </div>
+    <section class="dashboard-container" id="dashboard-container">
+        <!-- Dashboard cards will be dynamically added here by JavaScript -->
     </section>
 
     <footer class="footer">
@@ -62,8 +46,8 @@
         <div class="footer-right">
             <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
         </div>
-    </footer>    
-
+    </footer>
+    
     <!-- Link to the external JavaScript file -->
     <script src="../js/dashboard.js"></script>
 </body>
