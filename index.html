@@ -8,6 +8,161 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0; /* Light gray background for contrast */
+            color: #000000;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #8C1D40; 
+            color: #ffffff;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            color: #FFC627; 
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff; /* White on hover for better visibility */
+        }
+
+        .hero {
+            background-color: #8C1D40; 
+            color: #ffffff;
+            padding: 4em 2em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+        }
+
+        .button {
+            background-color: #FFC627; 
+            color: #8C1D40; 
+            padding: 0.75em 1.5em;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #e5b317; 
+        }
+
+        .hero-image {
+            max-width: 450px;
+            margin-top: 2em;
+        }
+
+        .breakfast-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .scroll-indicator {
+            text-align: center;
+            color: #FFC627; 
+            margin-top: 2em;
+            font-weight: bold;
+        }
+
+        .arrow-down {
+            font-size: 2em;
+        }
+
+        .cta-section {
+            background-color: #FFC627; 
+            color: #8C1D40; 
+            text-align: center;
+            padding: 4em 2em;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+
+        .join-link {
+            color: #8C1D40;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .join-link:hover {
+            color: #6e1530; /* Darker maroon for hover effect */
+        }
+
+        .footer {
+            background-color: #8C1D40; 
+            color: #ffffff;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-left {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer-links a {
+            color: #FFC627; 
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff; 
+        }
+
+        .footer-right a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .footer-right a:hover {
+            color: #FFC627; /* Gold on hover */
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +182,7 @@
         <div class="hero-content">
             <h1>Achieve Your <br> Fitness Goals Today</h1>
             <p>Track your steps, sleep, food, and workouts with insights into muscle recovery and personalized fitness plans daily.</p>
-            <a href="#" class="button">Try Now</a>
+            <a href="static/html/login.html" class="button">Try Now</a>
         </div>
         <div class="hero-image">
             <img src="static/images/workout.png" alt="Healthy breakfast" class="breakfast-img">
@@ -41,7 +196,7 @@
     <section class="cta-section">
         <div class="cta-content">
             <h2>Elevate Your <br> Fitness Journey</h2>
-            <a href="#" class="join-link">Join Now &rarr;</a>
+            <a href="static/html/login.html" class="join-link">Join Now &rarr;</a>
         </div>
     </section>
 
@@ -57,8 +212,7 @@
             <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
         </div>
     </footer>    
-    
-    <!-- <script src="/Users/kishoreramesh/Desktop/Hackathon/fitness-booster-sunhacks/static/js/script.js"></script> -->
+
     <script src="static/js/script.js"></script>
 </body>
 
