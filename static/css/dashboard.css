@@ -31,6 +31,56 @@ body {
 
 .nav-links a:hover {
     color: #FFC627; /* Optional Gold color for hover */
+    
+}
+
+/* Scores Container Styling */
+.scores-container {
+    display: flex;
+    justify-content: space-around; 
+    margin: 20px 2em;
+    gap: 20px; /* Add space between score cards */
+    flex-wrap: nowrap; 
+    align-items: center; /
+}
+
+.score-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 220px; 
+    margin: 10px;
+    flex-shrink: 0; 
+}
+
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#8C1D40 0% 0%, #e0e0e0 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #8C1D40;
+    float: left;
+
+}
+.score-card canvas {
+    margin-bottom: 15px;
+    width: 100% !important; /* Ensure canvas fits in the card */
+    height: auto !important; /* Maintain aspect ratio */
+}
+
+
+.score-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #8C1D40;
 }
 
 /* Toggle Switch Styles */
@@ -101,10 +151,29 @@ input:checked + .slider:before {
     color: #8C1D40; /* Maroon for label text */
 }
 
-/* Time Input Section */
-.time-inputs {
-    text-align: center;
-    margin: 20px;
+.date-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 2em;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-selection label {
+    font-weight: bold;
+    color: #8C1D40;
+    margin-right: 10px;
+}
+
+.date-selection input[type="date"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Roboto', sans-serif;
+    color: #8C1D40;
 }
 
 button {

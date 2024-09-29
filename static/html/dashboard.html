@@ -22,6 +22,18 @@
         </nav>
     </header>
 
+    <section class="scores-container" id="scores-container">
+        <!-- Fitness Score and Recovery Score cards -->
+        <div class="score-card">
+            <canvas id="fitnessScoreChart" width="150" height="150"></canvas>
+            <h3>Fitness Score</h3>
+        </div>
+        <div class="score-card">
+            <canvas id="recoveryScoreChart" width="150" height="150"></canvas>
+            <h3>Recovery Score</h3>
+        </div>
+    </section>
+
     <div class="toggle-container">
         <label class="toggle-label">View: </label>
         <label class="switch">
@@ -31,12 +43,11 @@
         <span id="viewMode">Day</span>
     </div>
 
-    <div class="time-inputs">
-        <label for="start-time">Start Time:</label>
-        <input type="datetime-local" id="start-time">
-        <br>
-        <label for="end-time">End Time:</label>
-        <input type="datetime-local" id="end-time">
+    <div class="date-selection">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate">
         <br>
         <button id="getFitDataButton">Get Fit Data</button>
     </div>
