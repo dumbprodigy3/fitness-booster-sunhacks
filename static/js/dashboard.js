@@ -2,14 +2,71 @@ document.addEventListener('DOMContentLoaded', function () {
     const dashboardContainer = document.getElementById('dashboard-container');
     const viewToggle = document.getElementById('viewToggle');
     const viewModeLabel = document.getElementById('viewMode');
+    let currentView = 'last7Days'; // Initialize the view state
 
-    // Data for the dashboard (static for now)
+    // Function to authenticate the user using Google OAuth
+    function loginWithGoogle() {
+        window.location.href = 'https://your-api-gateway-url/login';
+    }
+
+    // Function to get fitness data after login
+    function getFitData() {
+        // Get the values from the input fields
+        const startTime = document.getElementById('start-time').value;
+        const endTime = document.getElementById('end-time').value;
+
+        if (startTime && endTime) {
+            // Convert date-time string to Date object and get time in milliseconds
+            const startTimeMillis = new Date(startTime).getTime();
+            const endTimeMillis = new Date(endTime).getTime();
+
+            // Check that the start time is before the end time
+            if (startTimeMillis >= endTimeMillis) {
+                alert("Start time must be before end time");
+                return;
+            }
+
+            console.log("Start Time in Millis:", startTimeMillis);
+            console.log("End Time in Millis:", endTimeMillis);
+
+            // Make API request with startTimeMillis and endTimeMillis
+            fetch(`https://your-api-gateway-url/getfitdata?startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Display the retrieved Google Fit data on the dashboard
+                    updateDashboard(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        } else {
+            alert("Please select both start and end times.");
+        }
+    }
+
+    // Function to update dashboard data after fetching from Google Fit
+    function updateDashboard(data) {
+        // Assuming the `data` structure contains the following:
+        // data = {
+        //   "workout": [...],
+        //   "stepCount": [...],
+        //   "foodTracking": [...],
+        //   "sleepCycle": [...]
+        // }
+        chartData[0].data = data.workout;
+        chartData[1].data = data.stepCount;
+        chartData[2].data = data.foodTracking;
+        chartData[3].data = data.sleepCycle;
+        renderCharts();
+    }
+
+    // Data structure to hold information for each chart
     const chartData = [
         {
             title: 'Workout Duration',
             canvasId: 'workoutDurationChart',
             labels: generateDateLabels(30), // Generate labels for the last 30 days
-            data: [30, 45, 60, 40, 50, 70, 65, 35, 55, 60, 45, 50, 70, 30, 60, 75, 40, 65, 55, 70, 30, 45, 80, 65, 50, 60, 55, 70, 45, 50],
+            data: [],
             borderColor: 'rgba(153, 102, 255, 1)',
             backgroundColor: 'rgba(153, 102, 255, 0.2)'
         },
@@ -17,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'Step Count',
             canvasId: 'stepCountChart',
             labels: generateDateLabels(30),
-            data: [3000, 5000, 7000, 4000, 6500, 8000, 7500, 6000, 7200, 5300, 4800, 7100, 7800, 3000, 4900, 8700, 6000, 6900, 7000, 8000, 5000, 4500, 8200, 7300, 6500, 6900, 7400, 8200, 5000, 6000],
+            data: [],
             borderColor: 'rgba(75, 192, 192, 1)',
             backgroundColor: 'rgba(75, 192, 192, 0.2)'
         },
@@ -25,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'Food Tracking',
             canvasId: 'foodTrackingChart',
             labels: generateDateLabels(30),
-            data: [2000, 1800, 2100, 1900, 2200, 2300, 2000, 2100, 1950, 2050, 2200, 1800, 2400, 2000, 2200, 1900, 2150, 2300, 2100, 2000, 1800, 1950, 2250, 2100, 2300, 2000, 2200, 2400, 1950, 2050],
+            data: [],
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)'
         },
@@ -33,25 +90,23 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'Sleep Cycle',
             canvasId: 'sleepCycleChart',
             labels: generateDateLabels(30),
-            data: [6, 7, 8, 5, 7, 6, 8, 7, 6, 7.5, 8, 6.5, 7, 5.5, 6, 8, 7, 6, 7.5, 8, 6, 7, 8, 5.5, 7, 6.5, 7, 6, 8, 7.5],
+            data: [],
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)'
         }
     ];
 
-    let currentView = 'last7Days'; // Initialize the view state
-
-    // Render the initial set of charts
+    // Render the initial set of charts with placeholder data
     renderCharts();
 
-    // Add event listener for the toggle switch
+    // Add event listener for the toggle switch to change between last 7 days and weekly average
     viewToggle.addEventListener('change', () => {
         currentView = viewToggle.checked ? 'weeklyAverage' : 'last7Days';
         viewModeLabel.textContent = viewToggle.checked ? 'Week' : 'Day';
         renderCharts();
     });
 
-    // Function to create and render charts
+    // Function to create and render charts dynamically based on the view
     function renderCharts() {
         // Clear the dashboard container
         dashboardContainer.innerHTML = '';
@@ -72,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Function to create and append card elements
+    // Function to create and append card elements to the dashboard
     function createCard(titleText, canvasId, labels, data, borderColor, backgroundColor) {
         const card = document.createElement('div');
         card.className = 'card';

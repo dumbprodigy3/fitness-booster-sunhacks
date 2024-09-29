@@ -8,7 +8,7 @@
         <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/footer.css">
-        <!-- Google Fonts for consistent typography -->
+            <!-- Google Fonts for consistent typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -31,6 +31,16 @@
         <span id="viewMode">Day</span>
     </div>
 
+    <div class="time-inputs">
+        <label for="start-time">Start Time:</label>
+        <input type="datetime-local" id="start-time">
+        <br>
+        <label for="end-time">End Time:</label>
+        <input type="datetime-local" id="end-time">
+        <br>
+        <button onclick="getFitData()">Get Fit Data</button>
+    </div>
+
     <section class="dashboard-container" id="dashboard-container">
         <!-- Dashboard cards will be dynamically added here by JavaScript -->
     </section>
@@ -47,7 +57,7 @@
             <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
         </div>
     </footer>
-    
+
     <!-- Link to the external JavaScript file -->
     <script src="../js/dashboard.js"></script>
 </body>
