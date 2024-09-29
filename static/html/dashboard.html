@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBoost Dashboard</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <!-- Google Fonts for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">FitBoost Dashboard</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <section class="dashboard-container">
+        <div class="card">
+            <h3>Workout Tracking</h3>
+            <input type="text" id="workout-input" placeholder="Enter today's workout" />
+            <button onclick="updateWorkout()">Update</button>
+            <p id="workout-status">No workout logged yet.</p>
+        </div>
+
+        <div class="card">
+            <h3>Step Count</h3>
+            <input type="number" id="steps-input" placeholder="Enter today's steps" />
+            <button onclick="updateSteps()">Update</button>
+            <p id="steps-status">No steps logged yet.</p>
+        </div>
+
+        <div class="card">
+            <h3>Food Tracking</h3>
+            <input type="text" id="food-input" placeholder="Enter today's meals" />
+            <button onclick="updateFood()">Update</button>
+            <p id="food-status">No meals logged yet.</p>
+        </div>
+
+        <div class="card">
+            <h3>Sleep Cycle</h3>
+            <input type="number" id="sleep-input" placeholder="Enter hours of sleep" />
+            <button onclick="updateSleep()">Update</button>
+            <p id="sleep-status">No sleep logged yet.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-left">FitBoost</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Plans</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-right">
+            <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
+        </div>
+    </footer>    
+
+    <!-- Link to the external JavaScript file -->
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
