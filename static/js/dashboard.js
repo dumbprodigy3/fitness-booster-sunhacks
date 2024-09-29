@@ -4,11 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const viewModeLabel = document.getElementById('viewMode');
     let currentView = 'last7Days'; // Initialize the view state
 
-    // Function to authenticate the user using Google OAuth
-    function loginWithGoogle() {
-        window.location.href = 'https://your-api-gateway-url/login';
-    }
-
     // Function to get fitness data after login
     function getFitData() {
         // Get the values from the input fields
@@ -30,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("End Time in Millis:", endTimeMillis);
 
             // Make API request with startTimeMillis and endTimeMillis
-            fetch(`https://your-api-gateway-url/getfitdata?startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
+            fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
                 .then(response => response.json())
                 .then(data => {
                     // Display the retrieved Google Fit data on the dashboard
