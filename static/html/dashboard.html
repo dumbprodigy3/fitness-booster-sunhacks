@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitBoost Dashboard</title>
-        <!-- Link to the external CSS file -->
+    <title>FitBoost Dashboard</title>        
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/footer.css">
             <!-- Google Fonts for consistent typography -->
@@ -17,8 +17,8 @@
     <header class="navbar">
         <div class="logo">FitBoost Dashboard</div>
         <nav class="nav-links">
-            <a href="../../index.html">Home</a>
-            <a href="../../index.html">Logout</a>
+            <a href="/fitness-booster-sunhacks/index.html">Home</a>
+            <a href="#">Logout</a>
         </nav>
     </header>
 
@@ -38,7 +38,7 @@
         <label for="end-time">End Time:</label>
         <input type="datetime-local" id="end-time">
         <br>
-        <button onclick="getFitData()">Get Fit Data</button>
+        <button id="getFitDataButton">Get Fit Data</button>
     </div>
 
     <section class="dashboard-container" id="dashboard-container">
@@ -48,7 +48,7 @@
     <footer class="footer">
         <div class="footer-left">FitBoost</div>
         <div class="footer-links">
-            <a href="../../index.html">Home</a>
+            <a href="/fitness-booster-sunhacks/index.html">Home</a>
             <a href="#">Features</a>
             <a href="#">Plans</a>
             <a href="#">Contact</a>

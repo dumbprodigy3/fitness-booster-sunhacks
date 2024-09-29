@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dashboardContainer = document.getElementById('dashboard-container');
     const viewToggle = document.getElementById('viewToggle');
     const viewModeLabel = document.getElementById('viewMode');
+    const getFitDataButton = document.getElementById('getFitDataButton');
     let currentView = 'last7Days'; // Initialize the view state
 
     // Function to get fitness data after login
@@ -39,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Add event listener for the Get Fit Data button
+    getFitDataButton.addEventListener('click', getFitData);
+
     // Function to update dashboard data after fetching from Google Fit
     function updateDashboard(data) {
         // Assuming the `data` structure contains the following:
@@ -48,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
         //   "foodTracking": [...],
         //   "sleepCycle": [...]
         // }
-        chartData[0].data = data.workout;
-        chartData[1].data = data.stepCount;
-        chartData[2].data = data.foodTracking;
-        chartData[3].data = data.sleepCycle;
+        chartData[0].data = data.workout || [];
+        chartData[1].data = data.stepCount || [];
+        chartData[2].data = data.foodTracking || [];
+        chartData[3].data = data.sleepCycle || [];
         renderCharts();
     }
 
