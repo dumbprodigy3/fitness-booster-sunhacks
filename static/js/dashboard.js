@@ -129,16 +129,16 @@ storeUserIdInSession();
             alert("Start date must be before end date");
             return;
         }
-        // // Make API request with startTimeMillis and endTimeMillis
-        // fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
-        // .then(response => response.json())
-        //     .then(data => {
-        //         // Display the retrieved Google Fit data on the dashboard
-        //         updateDashboard(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching data:', error);
-        //     });
+        // Make API request with startTimeMillis and endTimeMillis
+        fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
+        .then(response => response.json())
+            .then(data => {
+                // Display the retrieved Google Fit data on the dashboard
+                updateDashboard(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
 
         // Make API request to fetch fitness details
         fetch(`https://ex9v964yo7.execute-api.us-east-2.amazonaws.com/fitness-data?user_id=${user_id}`, {
@@ -249,58 +249,7 @@ storeUserIdInSession();
         });
     }
 
-    // Function to create and append card elements to the dashboard
-    function createCard(titleText, canvasId, labels, data, borderColor, backgroundColor) {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const title = document.createElement('h3');
-        title.textContent = titleText;
-        card.appendChild(title);
-
-        const canvas = document.createElement('canvas');
-        canvas.id = canvasId;
-        card.appendChild(canvas);
-
-        dashboardContainer.appendChild(card);
-
-        const ctx = canvas.getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: titleText,
-                    data: data,
-                    borderColor: borderColor,
-                    backgroundColor: backgroundColor,
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: { beginAtZero: true },
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    }
-
-    // Function to generate date labels for the last `numDays` days
-    function generateDateLabels(numDays) {
-        const labels = [];
-        const today = new Date();
-        for (let i = numDays - 1; i >= 0; i--) {
-            const date = new Date(today);
-            date.setDate(today.getDate() - i);
-            labels.push(date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }));
-        }
-        return labels;
-    }
-
+    
     // Function to aggregate data by week and calculate the average
     function aggregateWeeklyAverage(data) {
         const weeklyAverage = [];
