@@ -1,106 +1,36 @@
+/* General Styles */
 body {
-    margin: 0;
     font-family: 'Roboto', sans-serif;
     background-color: #f0f0f0;
-    color: #333;
+    color: #000; /* Changed to black for general text */
+    margin: 0;
 }
 
+/* Navbar Styling */
 .navbar {
+    background-color: #8C1D40; /* Maroon */
+    color: #fff;
+    padding: 1em 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    background-color: #6b4eff;
-    color: #fff;
 }
 
-.logo {
-    font-weight: bold;
+.navbar .logo {
     font-size: 1.5em;
+    font-weight: bold;
 }
 
 .nav-links a {
     margin-left: 20px;
+    color: white;
     text-decoration: none;
-    color: #fff;
-    font-weight: 400;
+    font-weight: bold;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #ddd;
-}
-
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    flex: 1 1 calc(50% - 40px);
-}
-
-.card h3 {
-    margin-bottom: 15px;
-    color: #6b4eff;
-}
-
-.card input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.card button {
-    background-color: #6b4eff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.card button:hover {
-    background-color: #593ed9;
-}
-
-.card p {
-    margin-top: 15px;
-    font-size: 1em;
-    color: #555;
-}
-
-
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .dashboard-container {
-        padding: 10px;
-    }
-
-    .card {
-        flex: 1 1 100%;
-        max-width: 90%;
-    }
-
-    .navbar {
-        flex-direction: column;
-        padding: 10px;
-    }
-
+    color: #FFC627; /* Optional Gold color for hover */
 }
 
 /* Toggle Switch Styles */
@@ -116,7 +46,7 @@ body {
 .toggle-label {
     font-size: 1em;
     font-weight: bold;
-    color: #6b4eff;
+    color: #8C1D40; /* Maroon for label */
     margin-right: 10px;
 }
 
@@ -158,7 +88,7 @@ body {
 }
 
 input:checked + .slider {
-    background-color: #6b4eff;
+    background-color: #8C1D40; /* Maroon */
 }
 
 input:checked + .slider:before {
@@ -168,5 +98,85 @@ input:checked + .slider:before {
 #viewMode {
     margin-left: 10px;
     font-weight: bold;
-    color: #6b4eff;
+    color: #8C1D40; /* Maroon for label text */
+}
+
+/* Time Input Section */
+.time-inputs {
+    text-align: center;
+    margin: 20px;
+}
+
+button {
+    background-color: #8C1D40; /* Maroon for buttons */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #000; /* Black for hover effect */
+}
+
+/* Dashboard Container and Card Styling */
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 2em;
+    justify-content: space-around;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 calc(50% - 40px);
+    max-width: 400px;
+}
+
+.card h3 {
+    color: #8C1D40; /* Maroon for card headers */
+    margin-bottom: 20px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #8C1D40; /* Maroon for footer */
+    color: #fff;
+    padding: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    color: #FFC627; /* Optional Gold for hover */
+}
+
+.footer-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-right a:hover {
+    color: #FFC627; /* Optional Gold for hover */
 }
