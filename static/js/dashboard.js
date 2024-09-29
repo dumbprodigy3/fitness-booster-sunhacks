@@ -5,43 +5,147 @@ document.addEventListener('DOMContentLoaded', function () {
     const getFitDataButton = document.getElementById('getFitDataButton');
     let currentView = 'last7Days'; // Initialize the view state
 
+    // Function to extract user_id from URL and store it in session storage
+    function storeUserIdInSession() {
+        const params = new URLSearchParams(window.location.search);
+        const user_id = params.get('user_id');
+
+        if (user_id) {
+            sessionStorage.setItem('user_id', user_id);
+            console.log('User ID stored in session storage:', user_id);
+        } else {
+            console.error("User ID not found in URL");
+        }
+    }
+
+// Call the function when the page loads
+storeUserIdInSession();
+
+
+    // Function to set static scores using Chart.js
+    function setStaticScores() {
+        // Static values for Fitness and Recovery Scores
+        const fitnessScore = 80;
+        const recoveryScore = 85;
+
+        // Fitness Score Chart
+        const fitnessScoreCtx = document.getElementById('fitnessScoreChart').getContext('2d');
+        new Chart(fitnessScoreCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Score', 'Remaining'],
+                datasets: [{
+                    data: [fitnessScore, 100 - fitnessScore],
+                    backgroundColor: ['#8C1D40', '#e0e0e0'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: true }
+                }
+            },
+            plugins: [{
+                id: 'textPlugin',
+                beforeDraw: function (chart) {
+                    const ctx = chart.ctx;
+                    ctx.save();
+                    const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                    const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+                    ctx.font = 'bold 20px Roboto';
+                    ctx.fillStyle = '#8C1D40';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`${fitnessScore}%`, centerX, centerY);
+                    ctx.restore();
+                }
+            }]
+        });
+
+        // Recovery Score Chart
+        const recoveryScoreCtx = document.getElementById('recoveryScoreChart').getContext('2d');
+        new Chart(recoveryScoreCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Score', 'Remaining'],
+                datasets: [{
+                    data: [recoveryScore, 100 - recoveryScore],
+                    backgroundColor: ['#8C1D40', '#e0e0e0'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            },
+            plugins: [{
+                id: 'textPlugin',
+                beforeDraw: function (chart) {
+                    const ctx = chart.ctx;
+                    ctx.save();
+                    const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                    const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+                    ctx.font = 'bold 20px Roboto';
+                    ctx.fillStyle = '#8C1D40';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`${recoveryScore}%`, centerX, centerY);
+                    ctx.restore();
+                }
+            }]
+        });
+    }
+
+    // Set the static scores when the page loads
+    setStaticScores();
+
     // Function to get fitness data after login
     function getFitData() {
         // Get the values from the input fields
-        const startTime = document.getElementById('start-time').value;
-        const endTime = document.getElementById('end-time').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
 
         if (startTime && endTime) {
-            // Convert date-time string to Date object and get time in milliseconds
-            const startTimeMillis = new Date(startTime).getTime();
-            const endTimeMillis = new Date(endTime).getTime();
+        // Retrieve user_id from session storage
+        const user_id = sessionStorage.getItem('user_id');
+        if (!user_id) {
+            console.error("User ID not found. Please log in first.");
+            return;
+        }
 
-            // Check that the start time is before the end time
-            if (startTimeMillis >= endTimeMillis) {
-                alert("Start time must be before end time");
-                return;
-            }
+        // Set the time range for Google Fit data
+        const startTimeMillis = new Date(startDate).getTime();
+        const endTimeMillis = new Date(endDate).getTime();
 
-            console.log("Start Time in Millis:", startTimeMillis);
-            console.log("End Time in Millis:", endTimeMillis);
-
-            // Make API request with startTimeMillis and endTimeMillis
-            fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Display the retrieved Google Fit data on the dashboard
-                    updateDashboard(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
+        // Check that the start time is before the end time
+        if (startDate >= endDate) {
+            alert("Start date must be before end date");
+            return;
+        }
+        // Make API request with startTimeMillis and endTimeMillis
+        fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
+        .then(response => response.json())
+            .then(data => {
+                // Display the retrieved Google Fit data on the dashboard
+                updateDashboard(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
         } else {
             alert("Please select both start and end times.");
         }
     }
 
-    // Add event listener for the Get Fit Data button
-    getFitDataButton.addEventListener('click', getFitData);
+        // Add event listener for the Get Fit Data button
+        getFitDataButton.addEventListener('click', getFitData);
 
     // Function to update dashboard data after fetching from Google Fit
     function updateDashboard(data) {
