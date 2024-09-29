@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitBoost Dashboard</title>        
+    <title>FitBoost Overview</title>        
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -41,6 +41,14 @@
 
         .nav-links a:hover {
             color: #ffffff;
+        }
+
+        .section-heading {
+            color: #8C1D40;
+            text-align: center;
+            margin: 2em 0;
+            font-size: 2em;
+            font-weight: bold;
         }
 
         .scores-container {
@@ -199,13 +207,14 @@
 
 <body>
     <header class="navbar">
-        <div class="logo">FitBoost Dashboard</div>
+        <div class="logo">FitBoost Overview</div>
         <nav class="nav-links">
             <a href="../../index.html">Home</a>
             <a href="#">Logout</a>
         </nav>
     </header>
 
+    <h2 class="section-heading">FitBoost Scores</h2>
     <section class="scores-container" id="scores-container">
         <div class="score-card">
             <canvas id="fitnessScoreChart" width="150" height="150"></canvas>
@@ -217,14 +226,7 @@
         </div>
     </section>
 
-    <div class="toggle-container">
-        <label class="toggle-label">View: </label>
-        <label class="switch">
-            <input type="checkbox" id="viewToggle">
-            <span class="slider round"></span>
-        </label>
-        <span id="viewMode">Day</span>
-    </div>
+    <h2 class="section-heading">Dashboard</h2>
 
     <div class="date-selection">
         <label for="startDate">Start Date:</label>
@@ -233,6 +235,15 @@
         <input type="date" id="endDate" name="endDate">
         <br>
         <button id="getFitDataButton">Get Fit Data</button>
+    </div>
+
+    <div class="toggle-container"></div>
+        <label class="toggle-label">View: </label>
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider round"></span>
+        </label>
+        <span id="viewMode">Day</span>
     </div>
 
     <section class="dashboard-container" id="dashboard-container">

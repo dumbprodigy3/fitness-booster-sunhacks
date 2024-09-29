@@ -139,6 +139,26 @@ storeUserIdInSession();
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+        // Make API request to get sleep data
+        fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-sleep?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${ya29.a0AcM612z9yoR6U8AmFtAyNB0AOgSAf3D-T9nYwRp_wvq1giJACxcgvogkzl3Vys9FNAeprayyPBZU5FWZ_gfa547q6cPL5BV4usT2rUEUemk_OydN9aN5RG0TK8TVYreOFKq7htDxIpU7gEO0vQ8FWkQT6ziX_bqXvcrYop9vaCgYKASYSARASFQHGX2MiR4SkFeONXoDyVtlqj5FsGQ0175}`,
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+            .then(data => {
+                // Display the retrieved Google Fit data on the dashboard
+                updateDashboard(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        log(response)
+
+    
         } else {
             alert("Please select both start and end times.");
         }
