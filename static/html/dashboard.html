@@ -5,25 +5,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitBoost Dashboard</title>        
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/footer.css">
-            <!-- Google Fonts for consistent typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #000000;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #8C1D40;
+            color: #ffffff;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            color: #FFC627;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .scores-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2em 0;
+            padding: 0 2em;
+        }
+
+        .score-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+            text-align: center;
+            width: 200px;
+        }
+
+        .score-card h3 {
+            color: #8C1D40;
+            margin-top: 1em;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 1em 2em;
+        }
+
+        .toggle-label {
+            font-weight: bold;
+            color: #8C1D40;
+            margin-right: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 17px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #8C1D40;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .date-selection {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .date-selection label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #8C1D40;
+        }
+
+        .date-selection input[type="date"] {
+            margin-right: 20px;
+            padding: 0.5em;
+            border: 1px solid #8C1D40;
+            border-radius: 5px;
+        }
+
+        .date-selection button {
+            background-color: #8C1D40;
+            color: #ffffff;
+            padding: 0.75em 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .date-selection button:hover {
+            background-color: #6e1530;
+        }
+
+        .dashboard-container {
+            padding: 2em;
+        }
+
+        .footer {
+            background-color: #8C1D40;
+            color: #ffffff;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-left {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .footer-links a {
+            color: #FFC627;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-right a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .footer-right a:hover {
+            color: #FFC627;
+        }
+    </style>
 </head>
 
 <body>
     <header class="navbar">
         <div class="logo">FitBoost Dashboard</div>
         <nav class="nav-links">
-            <a href="/fitness-booster-sunhacks/index.html">Home</a>
+            <a href="../../index.html">Home</a>
             <a href="#">Logout</a>
         </nav>
     </header>
 
     <section class="scores-container" id="scores-container">
-        <!-- Fitness Score and Recovery Score cards -->
         <div class="score-card">
             <canvas id="fitnessScoreChart" width="150" height="150"></canvas>
             <h3>Fitness Score</h3>
@@ -53,13 +236,12 @@
     </div>
 
     <section class="dashboard-container" id="dashboard-container">
-        <!-- Dashboard cards will be dynamically added here by JavaScript -->
     </section>
 
     <footer class="footer">
         <div class="footer-left">FitBoost</div>
         <div class="footer-links">
-            <a href="/fitness-booster-sunhacks/index.html">Home</a>
+            <a href="../../index.html">Home</a>
             <a href="#">Features</a>
             <a href="#">Plans</a>
             <a href="#">Contact</a>
@@ -69,7 +251,6 @@
         </div>
     </footer>
 
-    <!-- Link to the external JavaScript file -->
     <script src="../js/dashboard.js"></script>
 </body>
 
