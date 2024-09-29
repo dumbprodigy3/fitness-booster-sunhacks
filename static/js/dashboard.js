@@ -112,7 +112,7 @@ storeUserIdInSession();
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
 
-        if (startTime && endTime) {
+        if (startDate && endDate) {
         // Retrieve user_id from session storage
         const user_id = sessionStorage.getItem('user_id');
         if (!user_id) {
