@@ -129,22 +129,21 @@ storeUserIdInSession();
             alert("Start date must be before end date");
             return;
         }
-        // Make API request with startTimeMillis and endTimeMillis
-        fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
-        .then(response => response.json())
-            .then(data => {
-                // Display the retrieved Google Fit data on the dashboard
-                updateDashboard(data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        // // Make API request with startTimeMillis and endTimeMillis
+        // fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-activity?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`)
+        // .then(response => response.json())
+        //     .then(data => {
+        //         // Display the retrieved Google Fit data on the dashboard
+        //         updateDashboard(data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching data:', error);
+        //     });
 
-        // Make API request to get sleep data
-        fetch(`https://z5b1v2y35i.execute-api.us-east-2.amazonaws.com/dev/get-google-fit-sleep?user_id=${user_id}&startTimeMillis=${startTimeMillis}&endTimeMillis=${endTimeMillis}`, {
+        // Make API request to fetch fitness details
+        fetch(`https://ex9v964yo7.execute-api.us-east-2.amazonaws.com/fitness-data`, {
             method: 'GET',
             headers: {
-              'Authorization': `Bearer ${ya29.a0AcM612z9yoR6U8AmFtAyNB0AOgSAf3D-T9nYwRp_wvq1giJACxcgvogkzl3Vys9FNAeprayyPBZU5FWZ_gfa547q6cPL5BV4usT2rUEUemk_OydN9aN5RG0TK8TVYreOFKq7htDxIpU7gEO0vQ8FWkQT6ziX_bqXvcrYop9vaCgYKASYSARASFQHGX2MiR4SkFeONXoDyVtlqj5FsGQ0175}`,
               'Content-Type': 'application/json'
             }
         })
