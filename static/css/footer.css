@@ -1,0 +1,55 @@
+/* Footer Styles */
+.footer {
+    background-color: #000; /* Updated to black */
+    color: #fff; /* Updated text color to white */
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #fff; /* Updated to match the text color */
+    text-align: center;
+    flex-wrap: nowrap; /* Ensure items stay in a single line */
+    gap: 10px; /* Space between items */
+}
+
+.footer-left {
+    font-weight: bold;
+    flex: 1; /* Allow the logo to take up space proportionately */
+    text-align: left;
+}
+
+.footer-links, .footer-right {
+    display: flex;
+    gap: 15px; /* Space between links */
+    flex: 1; /* Equal space for links and right-side content */
+    justify-content: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+/* Link Styling */
+.footer a {
+    color: #fff; /* Set link color to white */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #b388ff; /* Optional hover color to match theme */
+}
+
+/* Responsive Styles for Footer */
+@media (max-width: 768px) {
+    .footer {
+        flex-wrap: wrap; /* Allow items to wrap if they cannot fit */
+        padding: 15px 10px;
+    }
+
+    .footer-left, .footer-links, .footer-right {
+        flex: 1 1 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+}
