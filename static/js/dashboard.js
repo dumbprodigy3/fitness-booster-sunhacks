@@ -141,7 +141,7 @@ storeUserIdInSession();
         //     });
 
         // Make API request to fetch fitness details
-        fetch(`https://ex9v964yo7.execute-api.us-east-2.amazonaws.com/fitness-data`, {
+        fetch(`https://ex9v964yo7.execute-api.us-east-2.amazonaws.com/fitness-data?user_id=${user_id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
